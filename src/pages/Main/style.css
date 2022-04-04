@@ -1,0 +1,29 @@
+/*----------------------------------------*/
+/*----------------------------------------*/
+.mainStyle {
+  padding: 0 0 80px 0;
+}
+.promoBlock p:not(.label) {
+  text-shadow: 1px 1px 1px darkred;
+}
+.promoBlock form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.promoBlock input,
+.promoBlock button,
+.promoBlock select {
+  margin-top: 15px;
+  padding: 10px;
+  max-width: 350px;
+  width: 100%;
+}
+.activatedPromos {
+  margin-top: 40px;
+}
+.activatedPromos p:not(.label) {
+  margin: 5px 0;
+  text-shadow: 1px 1px 1px limegreen;
+}
+/*# sourceMappingURL=style.css.map */

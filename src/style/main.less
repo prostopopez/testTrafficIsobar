@@ -1,0 +1,121 @@
+@import url("./font.less");
+@import url("./variables.less");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: normal;
+}
+
+body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    color: @main-text-color;
+    background-color: @main-back-color;
+}
+
+.mainWrapper {
+    max-width: 1400px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 4% 0;
+    text-align: center;
+
+    h1 {
+        margin: 0;
+        font-size: 48px;
+        text-transform: uppercase;
+
+        @media (max-width: 1024px) {
+            font-size: 28px;
+        }
+    }
+
+    .label {
+        margin: 0;
+        font-size: 36px;
+        text-transform: uppercase;
+
+        @media (max-width: 1024px) {
+            font-size: 24px;
+        }
+    }
+
+    hr {
+        margin-top: 0;
+        width: 100%;
+    }
+
+    @media (max-width: 1024px) {
+        max-width: 768px;
+    }
+}
+
+menu, ul {
+    list-style: none;
+}
+
+p, span, table {
+    font-size: 24px;
+
+    @media (max-width: 1024px) {
+        font-size: 18px;
+    }
+}
+
+a,
+.mainIcon {
+    color: @head-text-color;
+    fill: @head-text-color;
+    text-decoration: none;
+}
+
+.mainLink {
+    cursor: pointer;
+    border-bottom: none;
+
+    &.active,
+    &:hover {
+        color: @main-active-color;
+    }
+
+    &:hover {
+        .mainIcon {
+            fill: @main-active-color;
+        }
+    }
+}
+
+input,
+button {
+    border: 1px solid @main-text-color;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+button {
+    color: @head-text-color;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.4s ease 0s;
+
+    &.green {
+        background: @btn-color;
+    }
+
+    &.purple {
+        width: 80%;
+        background: palevioletred;
+    }
+
+    &:hover {
+        background: @head-back-color;
+        transition: all 0.4s ease 0s;
+    }
+}
