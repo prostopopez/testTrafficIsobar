@@ -5,6 +5,7 @@ import {Router, Route, Switch} from 'react-router-dom';
 import {createBrowserHistory} from 'history';
 import router from './router';
 import App from './App';
+import {store} from "core-js/internals/reflect-metadata";
 
 const history = createBrowserHistory();
 window.h = history;
@@ -13,13 +14,24 @@ class Root extends React.Component {
     constructor(props) {
         super(props);
 
+        // localStorage.clear()
+        let storedUser = localStorage.getItem('currentUser');
+
+        console.log(storedUser);
         this.onChangeUser = this.onChangeUser.bind(this);
         this.state = {
-            currentUser: null
+            currentUser: storedUser
+                ? storedUser
+                : null
         };
     }
 
     onChangeUser(currentUser) {
+        if (currentUser) {
+            localStorage.setItem('currentUser', currentUser);
+        } else {
+            localStorage.clear();
+        }
         this.setState({currentUser});
     }
 

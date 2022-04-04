@@ -34,22 +34,6 @@ router.get('/getPromoData', (req, res) => {
     });
 });
 
-router.post('/updatePromoData', (req, res) => {
-    const {_id, update} = req.body;
-    promoData.findByIdAndUpdate(_id, update, (err) => {
-        if (err) return res.json({success: false, error: err});
-        return res.json({success: true});
-    });
-});
-
-router.delete('/deletePromoData', (req, res) => {
-    const {_id} = req.body;
-    promoData.findByIdAndRemove(_id, (err) => {
-        if (err) return res.send(err);
-        return res.json({success: true});
-    });
-});
-
 router.post('/putPromoData', (req, res) => {
     let data = new promoData();
 
@@ -95,8 +79,7 @@ router.post('/putUserData', (req, res) => {
     const {
         id,
         username,
-        password,
-        promos_id
+        password
     } = req.body;
 
     if ((!id && id !== 0) || !username || !password) {
@@ -107,7 +90,7 @@ router.post('/putUserData', (req, res) => {
     }
     data.username = username;
     data.password = password;
-    data.promos_id = promos_id;
+    data.promos_id = [];
     data.id = id;
     data.save((err) => {
         if (err) return res.json({success: false, error: err});

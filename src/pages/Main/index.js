@@ -58,31 +58,25 @@ class MainPage extends React.Component {
             .then((res) => this.setState({dataUsers: res.data}));
     };
 
-    putDataToDbPromo = (e, promo_id, promoCode) => {
-        e.preventDefault();
-
+    putDataToDbPromo = (promo_id, promoCode) => {
         axios.post('http://localhost:3001/api/putPromoData', {
             _id: promo_id,
             promoCode: promoCode,
         });
     };
 
-    updateDbUsers = (e, promo_id, username) => {
-        e.preventDefault();
-
+    updateDbUsers = (promo_id, currentUser) => {
         let objIdToUpdate = null;
-        parseInt(username);
+        parseInt(currentUser);
         this.state.dataUsers.forEach((dat) => {
-            if (dat.username == username) {
+            if (dat.username == currentUser) {
                 objIdToUpdate = dat._id;
             }
         });
 
-        console.log(promo_id, objIdToUpdate);
-
         axios.post('http://localhost:3001/api/updateUserData', {
             _id: objIdToUpdate,
-            update: {promos_id: [promo_id]},
+            update: {$push: {promos_id: [promo_id]}},
         });
     };
 
@@ -109,16 +103,14 @@ class MainPage extends React.Component {
                                 promo_id: new mongoose.Types.ObjectId(),
                                 promoCode: e.target.value
                             })} placeholder={'Код:'} required={true}/>
-                            <button className={cn('green')} onClick={(e) => {
+                            <button className={cn('green')} onClick={() => {
                                 this.putDataToDbPromo(
-                                    e,
                                     this.state.promo_id,
                                     this.state.promoCode,
                                 );
                                 this.updateDbUsers(
-                                    e,
                                     this.state.promo_id,
-                                    this.state.username
+                                    currentUser
                                 )
                             }}>Добавить промокод
                             </button>
